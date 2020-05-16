@@ -1,34 +1,22 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-class AllFruits extends Component {
+const AllFruits = (props) => {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      fruits: []
-    };
-  }
-
-  componentDidMount() {
-    fetch('api/v1/fruits.json').then((response) => {return response.json()}).then((data) => {this.setState({fruits: data})});
-  }
-  render() {
-    const fruits = this.state.fruits.map(fruit => {
-      return(
-        <div key={fruit.id}>
-          <h1>{fruit.name}</h1>
-          <p>{fruit.description}</p>
-        </div>
-      )
-    })
-
+  const fruits = props.fruits.map((fruit) => {
     return(
-      <div>
-        {fruits}
+      <div key={fruit.id}>
+        <h1>{fruit.name}</h1>
+        <p>{fruit.description}</p>
       </div>
     )
-  }
+  })
+
+  return(
+    <div>
+      {fruits}
+    </div>
+  )
 }
 
 export default AllFruits;

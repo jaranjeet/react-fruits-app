@@ -1,10 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import AllFruits from './AllFruits'
+import Body from './Body'
 const Main = () => (
   <div>
     <h1>Fruits are great!</h1>
-    <AllFruits />
+    <Body />
   </div>
 )
 
