@@ -9,8 +9,31 @@ class Body extends Component {
     this.state = {
       fruits: []
     };
+    this.handleFormSubmit = this.handleFormSubmit.bind(this)
+    this.addNewFruit = this.addNewFruit.bind(this)
   }
 
+  handleFormSubmit(name, description) {
+    let body = JSON.stringify({fruit: {name: name, description: description}})
+
+    fetch('/api/v1/fruits', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'
+      },
+      body: body,
+    }).then((response) => {return response.json()}).then((fruit) => {
+      this.addNewFruit(fruit)
+    })
+  }
+
+  addNewFruit() {
+    return(
+      <div>
+        <NewFruit handleFormSubmit={this.handleFormSubmit} />
+        <AllFruits fruits={this.state.fruits} />
+      </div>
+    )
+  }
   componentDidMount() {
     fetch('api/v1/fruits.json').then((response) => {return response.json()}).then((data) => {this.setState({fruits: data})});
   }
@@ -18,7 +41,7 @@ class Body extends Component {
   render() {
     return(
       <div>
-        <NewFruit />
+        <NewFruit handleFormSubmit={this.handleFormSubmit}/>
         <AllFruits fruits={this.state.fruits} />
       </div>
     )
