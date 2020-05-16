@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import AllFruits from './AllFruits'
+import AllFruits from './AllFruits';
+import NewFruit from './NewFruit';
 
 class Body extends Component {
   constructor(props) {
@@ -17,6 +18,7 @@ class Body extends Component {
   render() {
     return(
       <div>
+        <NewFruit />
         <AllFruits fruits={this.state.fruits} />
       </div>
     )
